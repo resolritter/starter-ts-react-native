@@ -19,13 +19,41 @@ module.exports = {
   },
   ignorePatterns: ["scripts/**"],
   rules: {
+    "require-atomic-updates": "off",
     "react/prefer-stateless-function": [
       0,
       {
         ignorePureComponents: false,
       },
     ],
+    "use-isnan": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        selector:
+          "CallExpression[callee.name='setTimeout'][arguments.length!=2]",
+        message: "setTimeout must always be invoked with two arguments.",
+      },
+      {
+        selector:
+          "CallExpression[callee.name='setInterval'][arguments.length!=2]",
+        message: "setInterval must always be invoked with two arguments.",
+      },
+    ],
+
+    // handled by ts-eslint, so no need for eslint's rules
+    "no-undef": "off",
     "no-unused-vars": "off",
+
+    // used for doing template substitution through "string-template-js"
+    "no-template-curly-in-string": "off",
+
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md#configuring-in-a-mixed-jsts-codebase
+    "@typescript-eslint/explicit-function-return-type": "off",
+
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -34,21 +62,6 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
-    "no-param-reassign": [
-      "error",
-      {
-        props: true,
-        ignorePropertyModificationsFor: ["nextState"],
-      },
-    ],
-    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md#configuring-in-a-mixed-jsts-codebase
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "require-atomic-updates": "off",
-    "no-template-curly-in-string": "off",
-    "no-undef": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/interface-name-prefix": "off",
   },
   overrides: [
     {
