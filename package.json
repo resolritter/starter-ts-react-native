@@ -19,11 +19,15 @@
     "@babel/runtime": "^7.7.7",
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/jest": "^24.0.24",
+    "@types/node": "^13.1.1",
     "@types/react-native": "^0.60.26",
     "@types/react-test-renderer": "16.9.1",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
     "@typescript-eslint/typescript-estree": "^2.13.0",
+    "@wdio/appium-service": "^5.16.11",
+    "@wdio/cli": "^5.18.1",
+    "appium": "^1.16.0",
     "babel-jest": "^24.9.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.8.0",
@@ -35,8 +39,11 @@
     "metro-react-native-babel-preset": "^0.57.0",
     "prettier": "^1.19.1",
     "react-test-renderer": "16.12.0",
+    "ts-node": "^8.5.4",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4",
-    "typescript-eslint-language-service": "https://github.com/manuth/typescript-eslint-language-service/tarball/eslint-6.7-fix"
+    "typescript-eslint-language-service": "https://github.com/manuth/typescript-eslint-language-service/tarball/eslint-6.7-fix",
+    "webdriverio": "^5.18.0"
   },
   "jest": {
     "preset": "react-native",

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "esnext",
     "module": "commonjs",
     "lib": ["es6"],
@@ -8,12 +9,13 @@
     "removeComments": true,
     "noEmit": true,
     "incremental": true,
+    "resolveJsonModule": true,
     "isolatedModules": false,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
+    "types": ["node", "webdriverio"],
     "plugins": [
       {
         "name": "typescript-eslint-language-service"
