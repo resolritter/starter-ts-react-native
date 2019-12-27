@@ -1,7 +1,7 @@
 module.exports = {
   semi: false,
-  trailingComma: 'all',
+  trailingComma: "all",
   jsxBracketSameLine: true,
   arrowParens: "always",
-  endOfLine: "lf"
-};
+  endOfLine: "lf",
+}

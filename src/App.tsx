@@ -26,7 +26,9 @@ import {
   ReloadInstructions,
 } from "react-native/Libraries/NewAppScreen"
 
-declare const global: {HermesInternal: null | {}}
+import Labels from "src/labels"
+
+declare const global: { HermesInternal: null | {} }
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -84,9 +86,10 @@ function App(): JSX.Element {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change
-                this screen and then come back to see your edits.
+              <Text
+                accessibilityLabel={Labels.HomePage.PresentationText}
+                style={styles.sectionDescription}>
+                {Labels.HomePage.PresentationText}
               </Text>
             </View>
             <View style={styles.sectionContainer}>

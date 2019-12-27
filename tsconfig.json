@@ -15,7 +15,7 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "webdriverio"],
+    "types": ["node", "webdriverio", "jest"],
     "plugins": [
       {
         "name": "typescript-eslint-language-service"
