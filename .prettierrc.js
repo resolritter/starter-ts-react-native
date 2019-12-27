@@ -3,7 +3,6 @@ module.exports = {
   trailingComma: 'all',
   bracketSpacing: false,
   jsxBracketSameLine: true,
-  singleQuote: true,
   arrowParens: "always",
   endOfLine: "lf"
 };
