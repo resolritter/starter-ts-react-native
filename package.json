@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest --projects .",
-    "test:e2e": "jest --projects e2e",
+    "e2e": "jest --projects e2e",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "postinstall": "node scripts/postinstall__typescript-eslint-language-server.js",
     "apk:debug": "mkdir -p ./android/app/src/main/assets && react-native bundle --dev false --platform android --entry-file src/App.tsx --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res && cd android && ./gradlew assembleDebug"
