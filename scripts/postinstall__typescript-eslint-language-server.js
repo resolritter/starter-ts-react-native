@@ -8,7 +8,7 @@ const tsserverPluginPath = path.resolve(
   npmNodeModules,
   "./typescript-eslint-language-service",
 )
-console.log(npmNodeModules, tsserverPluginPath)
+//console.log(npmNodeModules, tsserverPluginPath)
 const execSync = require("child_process").execSync
 
 const targetLibraryPath = path.resolve(tsserverPluginPath, "./index.js")
@@ -27,7 +27,9 @@ if (!fs.existsSync(targetLibraryPath)) {
     "./lib/index.js",
   )
   if (fs.existsSync(generatedLibraryPath)) {
-    fs.symlinkSync(generatedLibraryPath, targetLibraryPath)
+    if (!fs.readlinkSync(targetLibraryPath)) {
+      fs.symlinkSync(generatedLibraryPath, targetLibraryPath)
+    }
   } else {
     console.error(
       "Post-install script was not able to generate the file for typescript-eslint-language-service.",
