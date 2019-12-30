@@ -6,9 +6,11 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
+    "test": "jest --projects .",
+    "test:e2e": "jest --projects e2e",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "postinstall": "node scripts/postinstall__typescript-eslint-language-server.js"
+    "postinstall": "node scripts/postinstall__typescript-eslint-language-server.js",
+    "apk:debug": "mkdir -p ./android/app/src/main/assets && react-native bundle --dev false --platform android --entry-file src/App.tsx --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res && cd android && ./gradlew assembleDebug"
   },
   "dependencies": {
     "react": "16.9.0",
@@ -36,6 +38,7 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "eslint-plugin-sonarjs": "^0.5.0",
     "jest": "^24.9.0",
+    "jest-environment-webdriverio": "^1.0.13",
     "metro-react-native-babel-preset": "^0.57.0",
     "prettier": "^1.19.1",
     "react-test-renderer": "16.12.0",
@@ -47,6 +50,10 @@
   },
   "jest": {
     "preset": "react-native",
+    "projects": [
+      "<rootDir>/jest.config.js",
+      "<rootDir>/e2e/jest.config.js"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

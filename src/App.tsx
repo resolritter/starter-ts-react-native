@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from "react-native/Libraries/NewAppScreen"
 
-import Labels from "src/labels"
+import Labels from "./Labels"
 
 declare const global: { HermesInternal: null | {} }
 
@@ -73,7 +73,7 @@ function App(): JSX.Element {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+      <SafeAreaView accessibilityLabel={Labels.Root}>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
