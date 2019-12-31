@@ -1,2 +1,2 @@
 # environment configurations for different providers
-browserstack/
+browserstack/android.env
