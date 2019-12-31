@@ -3,14 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "postinstall": "node scripts/postinstall__typescript-eslint-language-server.js",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "jest --projects .",
     "e2e": "jest --projects e2e",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "postinstall": "node scripts/postinstall__typescript-eslint-language-server.js",
-    "apk:debug": "mkdir -p ./android/app/src/main/assets && react-native bundle --dev false --platform android --entry-file src/App.tsx --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res && cd android && ./gradlew assembleDebug"
+    "e2e:android:browserstack": "DOTENV_CONFIG_PATH=./env/browserstack/android.env node -r dotenv/config node_modules/.bin/jest --projects e2e",
+    "apk:debug": "mkdir -p ./android/app/src/main/assets && react-native bundle --dev false --platform android --entry-file src/App.tsx --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res && cd android && ./gradlew assembleDebug",
+    "apk:release": "react-native run-android --variant=release",
+    "upload:apk:browserstack": "node scripts/upload_apk_to_browserstack.js"
   },
   "dependencies": {
     "react": "16.9.0",
@@ -18,8 +21,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
-    "@babel/runtime": "^7.7.7",
-    "@react-native-community/eslint-config": "^0.0.5",
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.1",
     "@types/react-native": "^0.60.26",
@@ -31,6 +32,7 @@
     "@wdio/cli": "^5.18.1",
     "appium": "^1.16.0",
     "babel-jest": "^24.9.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.2",
@@ -43,6 +45,7 @@
     "metro-react-native-babel-preset": "^0.57.0",
     "prettier": "^1.19.1",
     "react-test-renderer": "16.12.0",
+    "request": "^2.88.0",
     "ts-node": "^8.5.4",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4",
