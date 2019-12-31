@@ -3,17 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "postinstall": "node scripts/postinstall__typescript-eslint-language-server.js",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "jest --projects .",
     "e2e": "jest --projects e2e",
-    "e2e:android:browserstack": "DOTENV_CONFIG_PATH=./env/browserstack/android.env node -r dotenv/config node_modules/.bin/jest --projects e2e",
     "apk:debug": "mkdir -p ./android/app/src/main/assets && react-native bundle --dev false --platform android --entry-file src/App.tsx --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res && cd android && ./gradlew assembleDebug",
     "apk:release": "react-native run-android --variant=release",
-    "upload:apk:browserstack": "node scripts/upload_apk_to_browserstack.js"
+    "upload:apk:browserstack": "DOTENV_CONFIG_PATH=./env/browserstack/android.env node -r dotenv/config scripts/upload_apk_to_browserstack.js",
+    "e2e:android:browserstack": "DOTENV_CONFIG_PATH=./env/browserstack/android.env node -r dotenv/config node_modules/.bin/jest --projects e2e"
   },
   "dependencies": {
     "react": "16.9.0",
@@ -28,7 +27,6 @@
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
     "@typescript-eslint/typescript-estree": "^2.13.0",
-    "@wdio/appium-service": "^5.16.11",
     "@wdio/cli": "^5.18.1",
     "appium": "^1.16.0",
     "babel-jest": "^24.9.0",
@@ -49,7 +47,7 @@
     "ts-node": "^8.5.4",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4",
-    "typescript-eslint-language-service": "https://github.com/manuth/typescript-eslint-language-service/tarball/eslint-6.7-fix",
+    "typescript-eslint-language-service": "^2.0.3",
     "webdriverio": "^5.18.0"
   },
   "jest": {
