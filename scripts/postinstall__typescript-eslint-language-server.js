@@ -27,7 +27,7 @@ if (!fs.existsSync(targetLibraryPath)) {
     "./lib/index.js",
   )
   if (fs.existsSync(generatedLibraryPath)) {
-    if (!fs.readlinkSync(targetLibraryPath)) {
+    if (!fs.existsSync(targetLibraryPath)) {
       fs.symlinkSync(generatedLibraryPath, targetLibraryPath)
     }
   } else {
