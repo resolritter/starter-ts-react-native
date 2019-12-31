@@ -1,5 +1,6 @@
 import { version as appiumVersion } from "appium/package.json"
 import * as path from "path"
+import * as fs from "fs"
 import {
   ANDROID_APPLICATION_PATH,
   ANDROID_CLOUD_DEVICE_NAME,
@@ -7,6 +8,7 @@ import {
   APPIUM_HOST,
   APPIUM_LOG_LEVEL,
   APPIUM_PASSWORD,
+  APPLICATION_NAME,
   APPIUM_PORT,
   APPIUM_USER,
   DEVICE_TIMEOUT,
@@ -38,11 +40,17 @@ let android, ios: WDIOConfig
 
 // https://www.browserstack.com/automate/capabilities?tag=selenium-4
 if (process.env.BROWSERSTACK) {
+  delete common.user
+  delete common.key
+  delete common.port
+
   const browserstackBase: WDIOConfig = {
     ...common,
     capabilities: [
       {
         ...common.capabilities[0],
+        // uses customid -> https://www.browserstack.com/app-automate/capabilities#appium-capabilities
+        app: APPLICATION_NAME,
         ["bstack:options"]: {
           userName: APPIUM_USER,
           accessKey: APPIUM_PASSWORD,
@@ -62,14 +70,14 @@ if (process.env.BROWSERSTACK) {
     capabilities: [
       {
         ...browserstackBase.capabilities[0],
-        platformName: "Android",
+        browserName: "Android",
         automationName: "UiAutomator2",
         ["bstack:options"]: {
           ...browserstackBase.capabilities[0]["bstack:options"],
-          deviceName: ANDROID_CLOUD_DEVICE_NAME,
           appiumVersion,
+          deviceName: ANDROID_CLOUD_DEVICE_NAME,
           osVersion: ANDROID_OS_VERSION,
-          app: ANDROID_APPLICATION_PATH,
+          os: "android",
         },
       },
     ],
@@ -80,14 +88,14 @@ if (process.env.BROWSERSTACK) {
     capabilities: [
       {
         ...browserstackBase.capabilities[0],
-        platformName: "iOS",
+        browserName: "iPhone",
         automationName: "XCUITest",
         ["bstack:options"]: {
           ...browserstackBase.capabilities[0]["bstack:options"],
           appiumVersion,
           deviceName: IOS_DEVICE_NAME,
           osVersion: IOS_OS_VERSION,
-          app: IOS_APPLICATION_PATH,
+          os: "ios",
         },
       },
     ],
