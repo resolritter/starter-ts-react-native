@@ -26,7 +26,6 @@ const common: WDIOConfig = {
   user: APPIUM_USER,
   key: APPIUM_PASSWORD,
   waitforTimeout: DEVICE_TIMEOUT,
-  services: ["appium"],
   capabilities: [
     {
       deviceReadyTimeout: DEVICE_TIMEOUT,
