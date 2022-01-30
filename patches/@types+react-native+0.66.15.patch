@@ -1,0 +1,62 @@
+diff --git a/node_modules/@types/react-native/index.d.ts b/node_modules/@types/react-native/index.d.ts
+index e8f8c2e..1da5b6d 100755
+--- a/node_modules/@types/react-native/index.d.ts
++++ b/node_modules/@types/react-native/index.d.ts
+@@ -64,6 +64,23 @@
+ 
+ import * as React from 'react';
+ 
++type ElementRef<
++    C extends
++        | React.ForwardRefExoticComponent<any>
++        | { new (props: any): React.Component<any> }
++        | ((props: any, context?: any) => React.ReactElement | null)
++        | keyof JSX.IntrinsicElements
++> =
++    // need to check first if `ref` is a valid prop for ts@3.0
++    // otherwise it will infer `{}` instead of `never`
++    "ref" extends keyof React.ComponentPropsWithRef<C>
++        ? NonNullable<React.ComponentPropsWithRef<C>["ref"]> extends React.Ref<
++            infer Instance
++        >
++            ? Instance
++            : never
++        : never;
++
+ type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+ 
+ type Constructor<T> = new (...args: any[]) => T;
+@@ -1796,21 +1813,21 @@ interface TextInputState {
+      * Returns the ref of the currently focused text field, if one exists
+      * If no text field is focused it returns null
+      */
+-    currentlyFocusedInput(): React.ElementRef<HostComponent<unknown>>;
++    currentlyFocusedInput(): ElementRef<HostComponent<unknown>>;
+ 
+     /**
+      * @param textField ref of the text field to focus
+      * Focuses the specified text field
+      * noop if the text field was already focused
+      */
+-    focusTextInput(textField?: React.ElementRef<HostComponent<unknown>>): void;
++    focusTextInput(textField?: ElementRef<HostComponent<unknown>>): void;
+ 
+     /**
+      * @param textField ref of the text field to focus
+      * Unfocuses the specified text field
+      * noop if it wasn't focused
+      */
+-    blurTextInput(textField?: React.ElementRef<HostComponent<unknown>>): void;
++    blurTextInput(textField?: ElementRef<HostComponent<unknown>>): void;
+ }
+ 
+ /**
+@@ -4148,7 +4165,7 @@ export class FlatList<ItemT = any> extends React.Component<FlatListProps<ItemT>>
+     /**
+      * Provides a reference to the underlying host component
+      */
+-    getNativeScrollRef: () => React.ElementRef<typeof View> | React.ElementRef<typeof ScrollViewComponent> | null | undefined;
++    getNativeScrollRef: () => ElementRef<typeof View> | ElementRef<typeof ScrollViewComponent> | null | undefined;
+ 
+     getScrollableNode: () => any;
+ 

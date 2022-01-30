@@ -1,66 +1,56 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from "react"
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
-  View,
-  Text,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native"
-
 import {
-  Header,
-  LearnMoreLinks,
   Colors,
   DebugInstructions,
+  Header,
   ReloadInstructions,
 } from "react-native/Libraries/NewAppScreen"
 
-import Labels from "./Labels"
+import { labels } from "./constants"
 
 declare const global: { HermesInternal: null | {} }
 
 const styles = StyleSheet.create({
   scrollView: {
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     backgroundColor: Colors.lighter,
+    /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
   },
-  engine: {
-    position: "absolute",
-    right: 0,
-  },
+  engine: { position: "absolute", right: 0 },
   body: {
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     backgroundColor: Colors.white,
+    /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
+  sectionContainer: { marginTop: 32, paddingHorizontal: 24 },
   sectionTitle: {
     fontSize: 24,
     fontWeight: "600",
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     color: Colors.black,
+    /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: "400",
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     color: Colors.dark,
+    /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
   },
-  highlight: {
-    fontWeight: "700",
-  },
+  highlight: { fontWeight: "700" },
   footer: {
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     color: Colors.dark,
+    /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
     fontSize: 12,
     fontWeight: "600",
     padding: 4,
@@ -69,14 +59,15 @@ const styles = StyleSheet.create({
   },
 })
 
-function App(): JSX.Element {
+const App = function () {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView accessibilityLabel={Labels.Root}>
+      <SafeAreaView accessibilityLabel={labels.Root}>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+          style={styles.scrollView}
+        >
           <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
@@ -87,9 +78,10 @@ function App(): JSX.Element {
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text
-                accessibilityLabel={Labels.HomePage.PresentationText}
-                style={styles.sectionDescription}>
-                {Labels.HomePage.PresentationText}
+                accessibilityLabel={labels.HomePage.PresentationText}
+                style={styles.sectionDescription}
+              >
+                {labels.HomePage.PresentationText}
               </Text>
             </View>
             <View style={styles.sectionContainer}>
@@ -104,13 +96,6 @@ function App(): JSX.Element {
                 <DebugInstructions />
               </Text>
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
         </ScrollView>
       </SafeAreaView>

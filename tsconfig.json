@@ -1,25 +1,20 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "target": "esnext",
+    "baseUrl": ".",
     "module": "commonjs",
-    "lib": ["es6"],
-    "allowJs": true,
+    "target": "ES2021", // Node.js LTS 16
+    "lib": ["ES2021"], // Node.js LTS 16
     "jsx": "react-native",
+    "allowJs": true,
     "removeComments": true,
     "noEmit": true,
-    "incremental": true,
-    "resolveJsonModule": true,
-    "isolatedModules": false,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "webdriverio", "jest"],
-    "plugins": [
-      {
-        "name": "typescript-eslint-language-service"
-      }
-    ]
-  }
+    "useUnknownInCatchVariables": false,
+    "types": ["react-native"],
+    "skipLibCheck": true
+  },
+  "include": ["src"]
 }
