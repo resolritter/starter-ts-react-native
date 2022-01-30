@@ -19,7 +19,7 @@ This is an application for React-Native which does not rely on Expo.
 1. Set up the emulator (see
   https://gist.github.com/resolritter/8b8a8b7ccbd119eb4921d8331294a19f for Arch
   Linux, although it might be useful for other operating systems as well).
-2. Run `emulator @[name of your emulator]`.
+2. Run `emulator @[name]`.
 3. Launch the Appium service with `npx appium`
 4. Run the end-to-end tests with `yarn e2e`
 
