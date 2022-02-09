@@ -1,11 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": [
-      "jest",
-      "webdriverio/async",
-      "@wdio/devtools-service"
-    ],
+    "types": ["jest", "webdriverio/async", "@wdio/devtools-service"],
     "sourceMap": true,
     "resolveJsonModule": true
   },

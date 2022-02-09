@@ -1,17 +1,12 @@
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- * @format
- */
+const { resolve: resolvePath } = require("path")
 
 module.exports = {
+  resolver: { extraNodeModules: { src: resolvePath(__dirname, "src") } },
   transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: true,
-      },
-    }),
+    getTransformOptions: async function () {
+      return {
+        transform: { experimentalImportSupport: false, inlineRequires: true },
+      }
+    },
   },
 }

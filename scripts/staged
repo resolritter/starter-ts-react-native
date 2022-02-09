@@ -1,0 +1,79 @@
+#!/bin/bash
+
+set -eu -o pipefail
+
+files=()
+while IFS= read -r line; do
+  if ! [[ "$line" =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]+ ]]; then
+    continue
+  fi
+  case "${BASH_REMATCH[1]}" in
+    *A*|M*)
+      files+=("${line:${#BASH_REMATCH[0]}}")
+    ;;
+  esac
+done < <(git status --short --no-renames)
+
+e2e_args=()
+lint_args=()
+prettier_args=()
+case "$1" in
+  fix|lint)
+    for file in "${files[@]}"; do
+      case "$file" in
+        test/e2e/*.[jt]s|test/e2e/*.[jt]sx)
+          if [ ! "${e2e_args:-}" ]; then
+            e2e_args=("prefix:lint:e2e")
+            if [ "$1" == fix ]; then
+              e2e_args+=("--fix")
+            fi
+          fi
+          e2e_args+=("$file")
+        ;;
+        *.[jt]s|*.[jt]sx)
+          if [ ! "${lint_args:-}" ]; then
+            lint_args=("prefix:lint:e2e")
+            if [ "$1" == fix ]; then
+              lint_args+=("--fix")
+            fi
+          fi
+          lint_args+=("$file")
+        ;;
+        *.html|*.json)
+          if [ ! "${prettier_args:-}" ]; then
+            prettier_args=("--loglevel=silent")
+            case "$1" in
+              fix)
+                prettier_args+=("--write")
+              ;;
+              lint)
+                prettier_args+=("--check")
+              ;;
+              *)
+                2>&1 echo "Unreachable"
+                exit 1
+              ;;
+            esac
+          fi
+          prettier_args+=("$file")
+        ;;
+      esac
+    done
+  ;;
+  *)
+    2>&1 echo "Invalid command \"$1\""
+    exit 1
+  ;;
+esac
+
+if [ "${e2e_args:-}" ]; then
+  yarn "${e2e_args[@]}"
+fi
+
+if [ "${lint_args:-}" ]; then
+  yarn "${lint_args[@]}"
+fi
+
+if [ "${prettier_args:-}" ]; then
+  npx prettier "${prettier_args[@]}"
+fi

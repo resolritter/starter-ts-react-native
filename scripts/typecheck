@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -eu -o pipefail
+
+case "$1" in
+  e2e)
+    folder="test/e2e/"
+  ;;
+  *)
+    2>&1 echo "Invalid argument \"$1\""
+    exit 1
+  ;;
+esac
+
+cd "$folder"
+shift
+args=()
+for arg in "$@"; do
+  args+=("${arg:${#folder}}")
+done
+echo "${args[@]}"
+../../node_modules/.bin/tsc-files -p tsconfig.json --noEmit "${args[@]}"
