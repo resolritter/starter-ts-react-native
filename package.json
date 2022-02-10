@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "license": "Apache-2.0",
   "scripts": {
-    "postinstall": "patch-package",
     "typecheck:e2e": "tsc --noEmit -p test/e2e/tsconfig.json",
     "typecheck:source": "tsc --noEmit -p tsconfig.json",
     "typecheck": "yarn typecheck:source && yarn typecheck:e2e",
@@ -55,7 +54,6 @@
     "jest": "27.5.1",
     "jest-environment-webdriverio": "1.0.13",
     "metro-react-native-babel-preset": "0.68.0",
-    "patch-package": "6.4.7",
     "prettier": "2.5.1",
     "request": "2.88.0",
     "ts-node": "10.5.0",
