@@ -1,16 +1,15 @@
+import AsyncStorage from "@react-native-async-storage/async-storage"
 import {
+  Action,
   ActionCreatorWithPayload,
-  applyMiddleware,
   configureStore,
-  createStore,
   Middleware,
 } from "@reduxjs/toolkit"
 import { combineReducers } from "redux"
+import { Persistor, persistReducer, persistStore } from "redux-persist"
 import thunkMiddleware from "redux-thunk"
-import { persistStore, persistReducer, Persistor } from "redux-persist"
-import AsyncStorage from "@react-native-async-storage/async-storage"
 
-import { counterStore, State as CounterState } from "./store/counter"
+import { counterStore } from "./store/counter"
 
 const setupStore = function () {
   const persistorRef: { current: Persistor | undefined } = {
@@ -30,8 +29,8 @@ const setupStore = function () {
   }
   const automaticPersistenceMiddleware: Middleware = function () {
     return function (next) {
-      return function (action) {
-        const result = next(action)
+      return function (action: Action<unknown>) {
+        const result: any = next(action)
         if (
           persistorRef.current !== undefined &&
           persistAfter.some(function (actionCreator) {
@@ -40,6 +39,7 @@ const setupStore = function () {
         ) {
           persistorRef.current.flush()
         }
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return result
       }
     }

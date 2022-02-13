@@ -3,12 +3,12 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import React from "react"
 import { Provider } from "react-redux"
+import { PersistGate } from "redux-persist/integration/react"
 
 import { routes } from "./constants"
 import Example from "./screens/Example"
 import Home from "./screens/Home"
-import { store, persistor } from "./store"
-import { PersistGate } from "redux-persist/integration/react"
+import { persistor, store } from "./store"
 
 const Stack = createNativeStackNavigator()
 

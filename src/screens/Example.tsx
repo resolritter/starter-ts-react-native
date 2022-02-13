@@ -2,9 +2,9 @@ import React from "react"
 import { Button, Text, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 
-import { flexCenterColumn } from "src/styles"
 import { State } from "src/store"
 import { counterStore } from "src/store/counter"
+import { flexCenterColumn } from "src/styles"
 
 const Home = function () {
   const count = useSelector<State>(function ({
