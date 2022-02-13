@@ -21,6 +21,15 @@ case "$1" in
   fix|lint)
     for file in "${files[@]}"; do
       case "$file" in
+        *.[jt]s|*.[jt]sx)
+          if [ ! "${lint_args:-}" ]; then
+            lint_args=("prefix:lint:source")
+            if [ "$1" == fix ]; then
+              lint_args+=("--fix")
+            fi
+          fi
+          lint_args+=("$file")
+        ;;
         test/e2e/*.[jt]s|test/e2e/*.[jt]sx)
           if [ ! "${e2e_args:-}" ]; then
             e2e_args=("prefix:lint:e2e")
@@ -29,15 +38,6 @@ case "$1" in
             fi
           fi
           e2e_args+=("$file")
-        ;;
-        *.[jt]s|*.[jt]sx)
-          if [ ! "${lint_args:-}" ]; then
-            lint_args=("prefix:lint:e2e")
-            if [ "$1" == fix ]; then
-              lint_args+=("--fix")
-            fi
-          fi
-          lint_args+=("$file")
         ;;
         *.html|*.json)
           if [ ! "${prettier_args:-}" ]; then
