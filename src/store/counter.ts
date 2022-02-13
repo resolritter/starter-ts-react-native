@@ -7,7 +7,7 @@ export type State = {
 const initialState: State = { count: 1 }
 
 export const counterStore = createSlice({
-  name: "account",
+  name: "counter",
   initialState,
   reducers: {
     change: function (state, { payload }: { payload: State["count"] }) {
