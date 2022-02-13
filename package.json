@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "Apache-2.0",
   "scripts": {
-    "typecheck:e2e": "tsc --noEmit -p test/e2e/tsconfig.json",
+    "typecheck:e2e": "scripts/typecheck e2e",
     "typecheck:source": "tsc --noEmit -p tsconfig.json",
     "typecheck": "yarn typecheck:source && yarn typecheck:e2e",
     "android": "react-native run-android",

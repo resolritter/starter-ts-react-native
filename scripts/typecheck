@@ -2,21 +2,31 @@
 
 set -eu -o pipefail
 
+die() {
+  >&2 echo "$1"
+  exit 1
+}
+
+if [[ "${BASH_SOURCE[0]}" =~ ^(.+/).*$ ]]; then
+  project_root="$(realpath "${BASH_REMATCH[1]}/..")"
+else
+  die "Could not parse the directory name from ${BASH_SOURCE[0]}"
+fi
+
 case "$1" in
   e2e)
-    folder="test/e2e/"
+    folder="$project_root/test/e2e"
   ;;
   *)
-    2>&1 echo "Invalid argument \"$1\""
+    die "Invalid argument \"$1\""
     exit 1
   ;;
 esac
+shift
 
 cd "$folder"
-shift
 args=()
 for arg in "$@"; do
   args+=("${arg:${#folder}}")
 done
-echo "${args[@]}"
-../../node_modules/.bin/tsc-files -p tsconfig.json --noEmit "${args[@]}"
+"$project_root/node_modules/.bin/tsc-files" -p tsconfig.json --noEmit "${args[@]}"
