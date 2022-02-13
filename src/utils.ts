@@ -1,8 +1,10 @@
 import { Dimensions, PixelRatio } from "react-native"
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get("window")
+const { width: screenWidth } = Dimensions.get("window")
 
-const scale = screenWidth / screenHeight
+// based on iPhone 8's scale
+const widthScale = screenWidth / 375
+
 export const normalize = function (size: number) {
-  return Math.round(PixelRatio.roundToNearestPixel(scale * size))
+  return Math.round(PixelRatio.roundToNearestPixel(widthScale * size))
 }
