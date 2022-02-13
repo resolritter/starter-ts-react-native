@@ -2,7 +2,8 @@ import type { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import React from "react"
 import { Button, Text, View } from "react-native"
 
-import { routes, styles } from "src/constants"
+import { routes } from "src/constants"
+import { flexCenterColumn } from "src/styles"
 import { RootStackParamList } from "src/types"
 
 const Home = function ({
@@ -11,7 +12,7 @@ const Home = function ({
   navigation: NativeStackNavigationProp<RootStackParamList, "home">
 }) {
   return (
-    <View style={[styles.flexCenterColumn]}>
+    <View style={[flexCenterColumn]}>
       <Text>{"Hello world!"}</Text>
       <Button
         onPress={function () {
